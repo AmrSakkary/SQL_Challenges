@@ -637,11 +637,13 @@ group by 1
 
 -- 1. From the following table, write a SQL query to select all the salespeople. Return salesman_id, name, city, commission with the percent sign (%).
 
-SELECT salesman_id,name,city,'%',commission*100 commission_percent
+SELECT salesman_id,name,city,concat(commission*100 ,'%')commission_percent
 FROM salesman;
 
-
-
+-- 2. From the following table, write a SQL query to find the number of orders booked for each day. Return the result in a format like "For 2001-10-10 there are 15 orders".".
+select concat('For ', ord_date, ', there are ', count(ord_no), ' orders.')
+from orders
+group by ord_date
 
 
 
