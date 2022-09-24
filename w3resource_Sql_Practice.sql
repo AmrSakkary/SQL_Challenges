@@ -654,8 +654,14 @@ select *
 from orders
 order by ord_date desc
 
-
-
+-- 5. From the following table, write a SQL query to find all the orders. Sort the result-set in descending order by ord_date and purch_amt. Return all fields.
+select *
+from orders
+order by ord_date, purch_amt desc
+-- 6. From the following table, write a SQL query to find all the customers. Sort the result-set by customer_id. Return cust_name, city, grade.
+select cust_name, city, grade
+from customer
+order by customer_id
 
 
 
