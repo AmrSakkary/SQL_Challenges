@@ -645,7 +645,14 @@ select concat('For ', ord_date, ', there are ', count(ord_no), ' orders.')
 from orders
 group by ord_date
 
-
+-- 3. From the following table, write a SQL query to find all the orders. Sort the result-set in ascending order by ord_no. Return all fields.
+select *
+from orders
+order by ord_no 
+-- 4. From the following table, write a SQL query to find all the orders. Sort the result-set in descending order by ord_date. Return all fields.
+select * 
+from orders
+order by ord_date desc
 
 
 
