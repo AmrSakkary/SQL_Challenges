@@ -680,7 +680,23 @@ select
 from customer
 order by 3 desc
 
+-- 9. From the following table, write a SQL query that counts the unique orders and the highest purchase amount for each customer. Sort the result-set in descending order on 2nd field. Return customer ID, number of distinct orders and highest purchase amount by each customer.
+select distinct 
+    customer_id,
+    count(ord_no),
+    max(purch_amt)
+from orders
+group by 1
+order by 2 desc
 
+-- 10. From the following table, write a SQL query to calculate the summation of purchase amount, total commission (15% for all salespeople) by each order date. Sort the result-set on order date. Return order date, summation of purchase amount and commission.  
+
+select ord_date,
+    sum(purch_amt),
+    sum(purch_amt) * 0.15
+from orders
+group by 1
+order by 1
 
 
 
