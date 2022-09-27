@@ -702,6 +702,7 @@ order by 1
 -- Query on Multiple Tables
 -- source: https://www.w3resource.com/sql-exercises/sql-exercises-quering-on-multiple-table.php
 ------------------------------------------------------------------------------------------------
+-- 1. From the following tables, write a SQL query to find the salespeople and customers who live in the same city. Return customer name, salesperson name and salesperson city.
 
 
 
