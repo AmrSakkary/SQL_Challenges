@@ -698,10 +698,10 @@ from orders
 group by 1
 order by 1
 
-
-
-
-
+------------------------------------------------------------------------------------------------
+-- Query on Multiple Tables
+-- source: https://www.w3resource.com/sql-exercises/sql-exercises-quering-on-multiple-table.php
+------------------------------------------------------------------------------------------------
 
 
 
