@@ -703,8 +703,21 @@ order by 1
 -- source: https://www.w3resource.com/sql-exercises/sql-exercises-quering-on-multiple-table.php
 ------------------------------------------------------------------------------------------------
 -- 1. From the following tables, write a SQL query to find the salespeople and customers who live in the same city. Return customer name, salesperson name and salesperson city.
+select 
+    c.cust_name,
+    s.name,
+    s.city
+from salesman s
+join customer c
+    on s.city = c.city
 
-
+-- 2. From the following tables, write a SQL query to locate all the customers and the salesperson who works for them. Return customer name, and salesperson name.
+select 
+    c.cust_name "Customer Name",
+    s.name "salesman name"
+from salesman s
+join customer c
+    on s.salesman_id = c.salesman_id
 
 
 
