@@ -719,9 +719,22 @@ from salesman s
 join customer c
     on s.salesman_id = c.salesman_id
 
+-- 3. From the following tables, write a SQL query to find those salespeople who generated orders for their customers but are not located in the same city. Return ord_no, cust_name, customer_id (orders table), salesman_id (orders table).
+select o.ord_no,c.cust_name,o.customer_id, o.salesman_id
+from salesman s
+join customer c
+    on s.salesman_id = c.salesman_id
+join orders o
+    on c.customer_id = o.customer_id
+where c.city != s.city
 
-
-
+-- 4. From the following tables, write a SQL query to locate the orders made by customers. Return order number, customer name.
+select
+    o.ord_no,
+    c.cust_name
+from orders o
+join customer c
+    on o.customer_id = c.customer_id
 
 
 
