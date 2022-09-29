@@ -736,9 +736,39 @@ from orders o
 join customer c
     on o.customer_id = c.customer_id
 
+-- 5. From the following tables, write a SQL query to find those customers where each customer has a grade and is served by a salesperson who belongs to a city. Return cust_name as "Customer", grade as "Grade". 
+select 
+    c.cust_name "Customer",
+    grade "Grade",
+    count(ord_no) "Orders Count"
+from salesman s
+join orders o
+    on o.salesman_id = s.salesman_id
+join customer c
+    on o.customer_id = c.customer_id
+where grade is not null
+group by 1,2
 
-
-
+-- 6. From the following table, write a SQL query to find those customers who are served by a salesperson and the salesperson earns commission in the range of 12% to 14% (Begin and end values are included.). Return cust_name AS "Customer", city AS "City".
+select 
+    c.cust_name "Customer",
+    c.city "City"
+from customer c
+join salesman s
+    on s.salesman_id = c.salesman_id
+where commission between 0.12 and 0.14
+-------------------------------------------------------
+select 
+    c.cust_name "Customer",
+    c.city "City",
+    count(ord_no) "Orders Count"
+from customer c
+join salesman s
+    on s.salesman_id = c.salesman_id
+join orders o
+    on o.customer_id = c.customer_id
+where commission between 0.12 and 0.14
+group by 1,2
 
 
 

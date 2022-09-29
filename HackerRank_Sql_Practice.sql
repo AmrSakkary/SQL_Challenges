@@ -312,8 +312,12 @@ select @star = 1
         end
 
 
+-- Weather Observation Station 18
 
+select cast(Manhattan_Distance as numeric(32,4))
 
+from (select round(abs(min(lat_n)- max(lat_n)) + abs(min(long_w)- max(long_w)), 4) "Manhattan_Distance"
+from station) t1
 
 
 
