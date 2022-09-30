@@ -771,6 +771,24 @@ where commission between 0.12 and 0.14
 group by 1,2
 
 
+-- 7. From the following tables, write a SQL query to find all orders executed by the salesperson and ordered by the customer whose grade is greater than or equal to 200. Compute purch_amt*commission as “Commission”. Return customer name, commission as “Commission%” and Commission.
+select 
+    ord_no,
+    cust_name,
+    commission as "Commmission%",
+    purch_amt * commission as "Commission"
+from orders o
+join salesman s
+    on s.salesman_id = o.salesman_id
+join customer c
+    on o.customer_id = c.customer_id
+where grade >= 200
+-- 8. From the following table, write a SQL query to find those customers who placed orders on October 5, 2012. Return customer_id, cust_name, city, grade, salesman_id, ord_no, purch_amt, ord_date, customer_id and salesman_id.
+select *
+from customer c
+join orders o
+    on o.customer_id = c.customer_id
+where ord_date = '2012-10-05'
 
 
 

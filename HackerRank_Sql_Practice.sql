@@ -320,6 +320,17 @@ from (select round(abs(min(lat_n)- max(lat_n)) + abs(min(long_w)- max(long_w)), 
 from station) t1
 
 
+-- Weather Observation Station 19
+
+select 
+    cast(round(Euclidean_distance, 4) as numeric(32, 4)) 
+from
+    (select 
+        sqrt(power((max(lat_n)- min(lat_n)),2) + power((max(long_w)- min(long_w)), 2)) "Euclidean_distance"
+    from station
+    ) t1
+
+
 
 
 
