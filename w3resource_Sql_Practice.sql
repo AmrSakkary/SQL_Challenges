@@ -790,14 +790,30 @@ join orders o
     on o.customer_id = c.customer_id
 where ord_date = '2012-10-05'
 
+---------------------------------------------------------------------------
+-- SQL Joins
+-- Source: https://www.w3resource.com/sql-exercises/sql-joins-exercises.php
+---------------------------------------------------------------------------
 
+-- 1. From the following tables write a SQL query to find the salesperson and customer who reside in the same city. Return Salesman, cust_name and city.
+select 
+    s.name "Salesman Name", 
+    cust_name, 
+    s.city
+from salesman s
+join customer c
+    on s.city = c.city
 
-
-
-
-
-
-
+-- 2. From the following tables write a SQL query to find those orders where the order amount exists between 500 and 2000. Return ord_no, purch_amt, cust_name, city.
+select 
+    ord_no,
+    purch_amt,
+    cust_name,
+    city
+from orders o
+join customer c
+    on o.customer_id = c.customer_id
+where purch_amt between 500 and 2000
 
 
 
