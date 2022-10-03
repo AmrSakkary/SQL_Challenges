@@ -815,12 +815,52 @@ join customer c
     on o.customer_id = c.customer_id
 where purch_amt between 500 and 2000
 
+-- 3. From the following tables write a SQL query to find the salesperson(s) and the customer(s) he represents. Return Customer Name, city, Salesman, commission.
+select 
+    cust_name "Customer Name",
+    c.city,
+    s.name "Salesman Name",
+    commission
+from customer c
+join salesman s
+    on s.salesman_id = c.salesman_id
 
+-- 4. From the following tables write a SQL query to find salespeople who received commissions of more than 12 percent from the company. Return Customer Name, customer city, Salesman, commission. 
+select 
+    cust_name "Customer Name",
+    c.city,
+    s.name "Salesman Name",
+    commission
+from customer c
+join salesman s
+    on s.salesman_id = c.salesman_id
+where commission > 0.12
 
+-- 5. From the following tables write a SQL query to locate those salespeople who do not live in the same city where their customers live and have received a commission of more than 12% from the company. Return Customer Name, customer city, Salesman, salesman city, commission.
+select 
+    cust_name "Customer Name",
+    c.city,
+    s.name "Salesman Name",
+    commission
+from customer c
+join salesman s
+    on s.city != c.city and s.salesman_id = c.salesman_id
+where commission > 0.12
 
-
-
-
+-- 6. From the following tables write a SQL query to find the details of an order. Return ord_no, ord_date, purch_amt, Customer Name, grade, Salesman, commission.
+select 
+    ord_no,
+    ord_date,
+    purch_amt,
+    cust_name,
+    grade,
+    s.name "Salesman Name",
+    commission
+from orders o
+join customer c
+    on o.customer_id = c.customer_id
+join salesman s
+    on o.salesman_id = s.salesman_id
 
 
 
