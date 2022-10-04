@@ -862,6 +862,228 @@ join customer c
 join salesman s
     on o.salesman_id = s.salesman_id
 
+-- 7. Write a SQL statement to join the tables salesman, customer and orders so that the same column of each table appears once and only the relational rows are returned.
+-- look carefully here "only the relational rows are returned."
+-- the relational attributes here are city, salesman_id, customer_id
+-- without natural join 
+select *
+from orders o
+join salesman s
+    on o.salesman_id = s.salesman_id
+join customer c
+    on o.customer_id= c.customer_id
+where c.city = s.city
+
+-- with natural join
+select *
+from orders 
+natural join salesman 
+natural join customer 
+
+-- Comment by Peng Liu from w3resource community
+--NATURAL JOIN will compare ALL matched columns (with same column name), in this case both salesman_id and city will take into account, so that only 6 records are left, this is because city column has only three same cities: four records of NY, one London and one Paris.
+
+
+
+-- 8. From the following tables write a SQL query to display the customer name, customer city, grade, salesman, salesman city. The results should be sorted by ascending customer_id.
+
+select 
+    c.cust_name "Customer Name",
+    c.city "Customer City",
+    grade,
+    s.name "Salesman Name",
+    s.city "Salesman City"
+from salesman s
+join customer c
+    on c.salesman_id = s.salesman_id
+order by customer_id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
