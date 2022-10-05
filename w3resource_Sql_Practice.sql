@@ -898,7 +898,30 @@ join customer c
     on c.salesman_id = s.salesman_id
 order by customer_id
 
+-- 9. From the following tables write a SQL query to find those customers with a grade less than 300. Return cust_name, customer city, grade, Salesman, salesmancity. The result should be ordered by ascending customer_id.
+select 
+    c.cust_name "Customer Name",
+    c.city "Customer City",
+    c.grade,
+    s.name "Salesman Name",
+    s.city "Salesman City"
+from customer c
+left join salesman s
+    on c.salesman_id = s.salesman_id
+where c.grade < 300
+order by c.customer_id
 
+-- 10. Write a SQL statement to make a report with customer name, city, order number, order date, and order amount in ascending order according to the order date to determine whether any of the existing customers have placed an order or not.
+select 
+    c.cust_name "Customer Name",
+    c.city "Customer City",
+    o.ord_no "Order Number",
+    o.ord_date "Order Date",
+    o.purch_amt "Order Amount"
+from customer c
+join orders o
+    on o.customer_id = c.customer_id
+order by o.ord_date 
 
 
 
