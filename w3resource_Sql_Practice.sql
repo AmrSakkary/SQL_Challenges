@@ -923,9 +923,66 @@ join orders o
     on o.customer_id = c.customer_id
 order by o.ord_date 
 
+-- 11. SQL statement to generate a report with customer name, city, order number, order date, order amount, salesperson name, and commission to determine if any of the existing customers have not placed orders or if they have placed orders through their salesman or by themselves.
+select 
+    c.cust_name "Customer Name",
+    c.city "Customer City",
+    o.ord_no "Order Number",
+    o.ord_date "Order Date",
+    o.purch_amt "Order Amount",
+    s.name "Salesman Name",
+    s.commission
+from customer c
+left join orders o
+    on o.customer_id = c.customer_id
+left join salesman s
+    on c.salesman_id = s.salesman_id
+order by o.ord_date 
+
+-- 12. Write a SQL statement to generate a list in ascending order of salespersons who work either for one or more customers or have not yet joined any of the customers.
+select 
+    s.name "Salesman Name",
+    s.city "Salesman City",
+    c.cust_name "Customer Name",
+    c.city "Customer City"
+from salesman s
+left join customer c
+    on c.salesman_id = s.salesman_id
+order by s.salesman_id 
+-- 13. From the following tables write a SQL query to list all salespersons along with customer name, city, grade, order number, date, and amount.
+
+select 
+    s.name "Salesman Name",
+    c.cust_name "Customer Name",
+    c.city "Customer City",
+    grade,
+    o.ord_no "Order Number",
+    o.ord_date "Order Date",
+    o.purch_amt "Order Amount"
+from salesman s
+left join customer c
+    on c.salesman_id = s.salesman_id
+left join orders o
+    on o.customer_id = c.customer_id
 
 
+-- 14. Write a SQL statement to make a list for the salesmen who either work for one or more customers or yet to join any of the customer. The customer may have placed, either one or more orders on or above order amount 2000 and must have a grade, or he may not have placed any order to the associated supplier.
 
+select 
+    s.name "Salesman Name",
+    c.cust_name "Customer Name",
+    c.city "Customer City",
+    grade,
+    o.ord_no "Order Number",
+    o.ord_date "Order Date",
+    o.purch_amt "Order Amount"
+from salesman s
+left join customer c
+    on c.salesman_id = s.salesman_id
+left join orders o
+    on o.customer_id = c.customer_id
+where o.purch_amt >= 2000 and grade is not null
+order by s.salesman_id 
 
 
 
