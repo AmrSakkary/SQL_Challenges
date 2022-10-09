@@ -1009,8 +1009,20 @@ join orders o
     on c.customer_id = o.customer_id
 where grade is not null
 
+-- 17. Write a SQL query to combine each row of the salesman table with each row of the customer table.
+select 
+    s.salesman_id,
+    s.name "Salesman Name",
+    c.cust_name,c.customer_id
+from salesman s
+cross join customer c
 
 
+-- 18. Write a SQL statement to create a Cartesian product between salesperson and customer, i.e. each salesperson will appear for all customers and vice versa for that salesperson who belongs to that city. 
+select *
+from salesman s
+cross join customer c
+where s.city is not null
 
 
 
