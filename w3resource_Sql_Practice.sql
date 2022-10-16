@@ -1035,6 +1035,111 @@ from salesman s
 cross join customer c
 where s.city is not null and s.city != c.city and grade is not null
 
+-- 21. From the following tables write a SQL query to select all rows from both participating tables as long as there is a match between pro_com and com_id.
+select *
+from company_mast c
+join item_mast i
+    on c.COM_ID = i.pro_com
+
+-- 22. Write a SQL query to display the item name, price, and company name of all the products.
+select 
+    i.pro_name,
+    i.pro_price,
+    c.com_name
+from company_mast c
+right join item_mast i
+    on c.COM_ID = i.pro_com
+
+-- 23. From the following tables write a SQL query to calculate the average price of items of each company. Return average value and company name. 
+select 
+    c.com_name,
+    round(avg(i.pro_price),2) as "Average Price" 
+from company_mast c
+join item_mast i
+    on c.COM_ID = i.pro_com
+group by 1 
+
+-- 24. From the following tables write a SQL query to calculate and find the average price of items of each company higher than or equal to Rs. 350. Return average value and company name.
+select 
+    c.com_name,
+    round(avg(i.pro_price),2) as "Average Price" 
+from company_mast c
+join item_mast i
+    on c.COM_ID = i.pro_com
+group by 1 
+having round(avg(i.pro_price),2) >= 350
+-- 25. From the following tables write a SQL query to find the most expensive product of each company. Return pro_name, pro_price and com_name. 
+select c.com_name,i.pro_name, i.pro_price
+from company_mast c
+join item_mast i
+    on c.COM_ID = i.pro_com 
+        and i.pro_price =
+        (
+            select max(i.pro_price)
+            from item_mast i
+            where  c.COM_ID = i.pro_com 
+        )
+
+--------------------------------
+select 
+    com_id,
+    com_name,
+    pro_name,
+    pro_price 
+from (
+
+        select com_id, com_name, max(pro_price) "item_price" 
+        from item_mast 
+        join company_mast 
+            on com_id = pro_com
+        group by 1
+
+    ) t1
+
+join item_mast
+    on item_price= pro_price and com_id = pro_com
+
+
+-- 26. From the following tables write a SQL query to display all the data of employees including their department.
+select *
+from emp_department dep
+join emp_details det
+    on dpt_code = emp_dept
+-- 27. From the following tables write a SQL query to display the first and last names of each employee, as well as the department name and sanction amount.
+select 
+    EMP_FNAME "First Name",
+    EMP_LNAME "Last Name",
+    DPT_NAME "Department Name",
+    DPT_ALLOTMENT "Sanction Amount"
+from emp_department dep
+join emp_details det
+    on dpt_code = emp_dept
+-- 28. From the following tables write a SQL query to find the departments with budgets more than Rs. 50000 and display the first name and last name of employees.
+select 
+    EMP_FNAME "First Name",
+    EMP_LNAME "Last Name"
+from emp_department dep
+join emp_details det
+    on dpt_code = emp_dept
+where DPT_ALLOTMENT > 50000
+
+----------------------------------------
+select 
+    EMP_FNAME "First Name",
+    EMP_LNAME "Last Name"
+from emp_department dep
+join emp_details det
+    on dpt_code = emp_dept and  DPT_ALLOTMENT > 50000
+
+-- 29. From the following tables write a SQL query to find the names of departments where more than two employees are employed. Return dpt_name. 
+select 
+    DPT_NAME "Department Name",
+    count(det.*)
+from emp_department dep
+join emp_details det
+    on dpt_code = emp_dept 
+group by 1 
+having count(det.*) > 2
 
 
 
