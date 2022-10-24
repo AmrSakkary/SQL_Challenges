@@ -332,8 +332,51 @@ from
 
 
 
+-- Weather Observation Station 20
+-- 1- Calculating the Median in MySQL.
+
+with temptab as (select id, lat_n, row_number() over(order by lat_n) te
+              from station) 
+
+select 
+case
+    when count(*)%2 = 0 then round(
+                                    (select avg(lat_n) 
+                                         from temptab
+                                              where te = (select count(*)/2 from temptab) 
+                                                  or te = (select count(*)/2+1 from temptab)
+                                    ),4)
+                                
+    else (select round(lat_n, 4)
+          from temptab
+          where te = (select floor(count(*)/2)+1 from temptab)
+         )
+         
+end
+from temptab
 
 
+-- 2- Calculating the Median in MS SQL Server.
+
+with temptab as (select id, lat_n, row_number() over(order by lat_n) te
+              from station) 
+
+select 
+case
+    when count(*)%2 = 0 then cast(
+                                    (select avg(lat_n) 
+                                         from temptab
+                                              where te = (select floor(count(*)/2) from temptab) 
+                                                  or te = (select floor( count(*)/2) +1 from temptab)
+                                    )as numeric(10,4))
+                                
+    else (select cast (lat_n as numeric(10,4))
+          from temptab
+          where te = (select floor(count(*)/2)+1 from temptab)
+         )
+         
+end
+from temptab
 
 
 
