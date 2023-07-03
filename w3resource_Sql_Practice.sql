@@ -1185,8 +1185,30 @@ where purch_amt > (
                     where ord_date = '2012-10-10'
                     )
 
+-- 5. From the following tables, write a SQL query to find all the orders generated in New York city. Return ord_no, purch_amt, ord_date, customer_id and salesman_id.
+select *
+from orders
+where salesman_id in (
+                        select salesman_id
+                        from salesman
+                        where city = 'New York'
+                    )
 
+-- 6. From the following tables write a SQL query to determine the commission of the salespeople in Paris. Return commission.
+select commission
+from salesman
+where salesman_id in (select salesman_id 
+                    from customer
+                    where city = 'Paris')
 
+-- 7. Write a query to display all the customers whose ID is 2001 below the salesperson ID of Mc Lyon.
+select *
+from Customer 
+where customer_id = (
+                    select salesman_id  - 2001
+                    from salesman
+                    where name = 'Mc Lyon'
+                    )
 
 
 
