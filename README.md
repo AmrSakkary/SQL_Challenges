@@ -12,7 +12,7 @@ The challenges in this project are divided into the following categories:
 -   More advanced topics
 
 **References:**
-The following resources were used to create the challenges in this project:
+The following resources were used in this project:
 
  - HackerRank: https://www.hackerrank.com/
  - W3resource: https://www.w3resource.com/sql-exercises/
