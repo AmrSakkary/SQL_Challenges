@@ -1,11 +1,7 @@
 **SQL Challenges from HackerRank and W3resource**
 
 **Description:** 
-
-> This project is a collection of SQL challenges that I have solved from
-> HackerRank and W3resource. The challenges cover a wide range of SQL
-> topics, including basic SELECT statements, joins, subqueries, and
-> more.
+This project is a collection of SQL challenges that I have solved from HackerRank and W3resource. The challenges cover a wide range of SQL topics, including basic SELECT statements, joins, subqueries, and more.
 
 **Challenges:** 
 The challenges in this project are divided into the following categories:
