@@ -378,11 +378,67 @@ case
 end
 from temptab
 
+-- New Companies
+-- Using MySQL syntax 
+--Solution 1 using joins 
+SELECT DISTINCT
+    c.company_code, 
+    c.founder, 
+    COUNT(lm.lead_manager_code) total_number_lead_managers, 
+    COUNT(sm.senior_manager_code) total_number_senior_manager, 
+    COUNT(m.manager_code) total_number_managers, 
+    COUNT(e.employee_code) total_number_employees
+FROM company c
+JOIN lead_manager lm
+    USING(company_code)
+JOIN Senior_Manager sm
+    USING(company_code)
+JOIN manager m
+    USING(company_code)
+JOIN employee e
+    USING(company_code)
+GROUP BY 1, 2
+ORDER BY 1 ASC
 
+-- Solution 2- using subqueries
 
+SELECT DISTINCT
+    c.company_code, 
+    c.founder,
+    (SELECT COUNT(DISTINCT lead_manager_code)
+    FROM lead_manager
+    WHERE company_code = c.company_code) AS total_number_lead_managers, 
+    (SELECT COUNT(DISTINCT senior_manager_code)
+    FROM senior_manager
+    WHERE company_code = c.company_code) AS total_number_senior_managers, 
+    (SELECT COUNT(DISTINCT manager_code)
+    FROM manager
+    WHERE company_code = c.company_code) AS total_number_managers, 
+    (SELECT COUNT(DISTINCT employee_code)
+    FROM employee
+    WHERE company_code = c.company_code) AS total_number_employees
+FROM company c
+ORDER BY 1
 
-
-
+-- Using T-SQL
+SELECT 
+    c.company_code, 
+    c.founder, 
+    COUNT(DISTINCT lm.lead_manager_code) total_number_lead_managers, 
+    COUNT(DISTINCT sm.senior_manager_code) total_number_senior_manager, 
+    COUNT(DISTINCT m.manager_code) total_number_managers, 
+    COUNT(DISTINCT e.employee_code) total_number_employees
+FROM company c
+JOIN lead_manager lm
+    ON lm.company_code = c.company_code
+JOIN Senior_Manager sm
+    ON sm.company_code = c.company_code
+JOIN manager m
+    ON m.company_code = c.company_code
+JOIN employee e
+    ON e.company_code = c.company_code
+GROUP BY c.company_code, c.founder
+ORDER BY c.company_code ASC
 
 
 
